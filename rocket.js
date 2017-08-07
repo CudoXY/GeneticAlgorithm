@@ -11,7 +11,6 @@ function Rocket(dna) {
   this.vel = createVector();
   this.acc = createVector();
   this.completed = false;
-  this.crashed = false;
 
   this.time = 0;
   this.fitness = 0;
@@ -54,21 +53,20 @@ function Rocket(dna) {
     var start = graphDiagonal.grid[floor(this.pos.x)][floor(this.pos.y)];
     var end = graphDiagonal.grid[target.vector.x][target.vector.y];
 
-    if (start == end)
+    if (start != end)
     {
-      this.fitness = 10;
-      return;
+      this.resultWithDiagonals = astar.search(graphDiagonal, start, end, { closest: true });
+      this.fitness = 1/ this.resultWithDiagonals.length;
+    }
+    else
+    {
+      this.fitness = 1;
     }
 
-    this.resultWithDiagonals = astar.search(graphDiagonal, start, end, { closest: true });
-
-    this.fitness = 1/ this.resultWithDiagonals.length;
+    this.fitness /= this.time;
 
     if (this.completed)
       this.fitness *= 10;
-
-    if (this.crashed)
-      this.fitness /= 10;
 
   }
 
@@ -77,45 +75,51 @@ function Rocket(dna) {
     if (this.completed)
       return;
 
-    var d = dist(this.pos.x, this.pos.y, target.vector.x, target.vector.y);
-    if (d < 20) {
-      this.completed = true;
-      this.time = count;
-      this.pos = target.vector.copy();
-      return;
-    }
-
-    if (!this.completed && !this.crashed) {
-
-      this.applyForce(this.dna.genes[count]);
-      this.vel.add(this.acc);
-      this.nextPos.add(this.vel);
-
-      var isHit = false;
-      for (var i = 0; i < wall.length; i++)
-        if (wall[i].isColliding(this.nextPos.x, this.nextPos.y, this.width, this.height))
-        {
-          isHit = true;
-          this.time = 1;
-          // this.crashed = true;
-          // return;
-          break;
-        }
-
-      if (isHit)
-      {
-        this.dna.genes[count] = p5.Vector.random2D();
-        this.dna.genes[count].setMag(maxforce);
-        this.nextPos = this.pos.copy();
-        this.vel.limit(0);
+    try
+    {
+      var d = dist(this.pos.x, this.pos.y, target.vector.x, target.vector.y);
+      if (d < 20) {
+        this.completed = true;
+        this.pos = target.vector.copy();
+        return;
       }
-      else
-        this.pos.add(this.vel);
-      
-      this.acc.mult(0);
-      this.vel.limit(4);
-      this.time++;
+
+      if (!this.completed) {
+
+        this.applyForce(this.dna.genes[count]);
+        this.vel.add(this.acc);
+        this.nextPos.add(this.vel);
+
+        var isHit = false;
+        for (var i = 0; i < wall.length; i++)
+          if (wall[i].isColliding(this.nextPos.x, this.nextPos.y, this.width, this.height))
+          {
+            isHit = true;
+            // this.crashed = true;
+            // return;
+            break;
+          }
+
+        if (isHit)
+        {
+          this.dna.genes[count] = p5.Vector.random2D();
+          this.dna.genes[count].setMag(maxforce);
+          this.nextPos = this.pos.copy();
+          this.vel.limit(0);
+        }
+        else
+          this.pos.add(this.vel);
+        
+        this.acc.mult(0);
+        this.vel.limit(4);
+      }
     }
+    finally
+    {
+
+      this.time = count;
+    }
+
   }
 
   this.draw = function() {
