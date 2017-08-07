@@ -9,6 +9,7 @@ var count = 0;
 var target;
 var maxforce = 0.5;
 var mutationRate = 0.01;
+var crossoverRate = 0.6;
 var generationCount = 1;
 var averageFitness = 0;
 
