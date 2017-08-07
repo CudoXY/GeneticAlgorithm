@@ -4,10 +4,10 @@
 // Code for: https://youtu.be/bGz7mv2vD6g
 
 var population;
-var lifespan = 400;
+var lifespan = 600;
 var count = 0;
 var target;
-var maxforce = 0.2;
+var maxforce = 0.5;
 var mutationRate = 0.01;
 var generationCount = 1;
 var averageFitness = 0;
@@ -15,7 +15,7 @@ var averageFitness = 0;
 var canvasWidth = 800;
 var canvasHeight = 450;
 
-var rw = 20;
+var rw = 30;
 var rh = 250;
 
 var rx = 0;
@@ -58,10 +58,10 @@ function setup() {
   wall.push(new Wall(rx3, ry3, rw, rh));
 
   // Bounds
-  wall.push(new Wall(-10, 0, 10, canvasHeight));
-  wall.push(new Wall(canvasWidth + 20, 0, 10, canvasHeight));
-  wall.push(new Wall(0, -10, canvasWidth, 10));
-  wall.push(new Wall(0, canvasHeight + 20, canvasWidth, 10));
+  wall.push(new Wall(-rw, 0, rw, canvasHeight));
+  wall.push(new Wall(canvasWidth, 0, rw, canvasHeight));
+  wall.push(new Wall(0, -rw, canvasWidth, rw));
+  wall.push(new Wall(0, canvasHeight, canvasWidth, rw));
 
   // configure a-star
   var stage = [];
@@ -87,14 +87,14 @@ function setup() {
   }
   graphDiagonal = new Graph(stage, { diagonal: false });
 
-  var start = graphDiagonal.grid[100][20];
-  var start2 = graphDiagonal.grid[350][300];
-  var end = graphDiagonal.grid[target.vector.x][target.vector.y];
-  resultWithDiagonals = astar.search(graphDiagonal, start, end);
-  resultWithDiagonals2 = astar.search(graphDiagonal, start2, end, { heuristic: astar.heuristics.diagonal });
+  // var start = graphDiagonal.grid[100][20];
+  // var start2 = graphDiagonal.grid[350][300];
+  // var end = graphDiagonal.grid[target.vector.x][target.vector.y];
+  // resultWithDiagonals = astar.search(graphDiagonal, start, end);
+  // resultWithDiagonals2 = astar.search(graphDiagonal, start2, end, { heuristic: astar.heuristics.diagonal });
 
-  console.log(resultWithDiagonals);
-  console.log(resultWithDiagonals2);
+  // console.log(resultWithDiagonals);
+  // console.log(resultWithDiagonals2);
 
 }
 
@@ -129,12 +129,12 @@ function draw() {
   target.draw();
 
   // Draw a-star
-  fill('yellow');
-  noStroke();
+  // fill('yellow');
+  // noStroke();
 
-  for (var i = 0; i < resultWithDiagonals.length; i++)
-    rect(resultWithDiagonals[i].x, resultWithDiagonals[i].y, 1, 1);
+  // for (var i = 0; i < resultWithDiagonals.length; i++)
+  //   rect(resultWithDiagonals[i].x, resultWithDiagonals[i].y, 1, 1);
 
-  for (var i = 0; i < resultWithDiagonals2.length; i++)
-    rect(resultWithDiagonals2[i].x, resultWithDiagonals2[i].y, 1, 1);
+  // for (var i = 0; i < resultWithDiagonals2.length; i++)
+  //   rect(resultWithDiagonals2[i].x, resultWithDiagonals2[i].y, 1, 1);
 }

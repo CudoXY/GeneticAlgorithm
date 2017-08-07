@@ -53,7 +53,15 @@ function Rocket(dna) {
 
     var start = graphDiagonal.grid[floor(this.pos.x)][floor(this.pos.y)];
     var end = graphDiagonal.grid[target.vector.x][target.vector.y];
-    this.resultWithDiagonals = astar.search(graphDiagonal, start, end);
+
+    if (start == end)
+    {
+      this.fitness = 10;
+      return;
+    }
+
+    this.resultWithDiagonals = astar.search(graphDiagonal, start, end, { closest: true });
+
     this.fitness = 1/ this.resultWithDiagonals.length;
 
     if (this.completed)
@@ -77,9 +85,9 @@ function Rocket(dna) {
       return;
     }
 
-    this.applyForce(this.dna.genes[count]);
     if (!this.completed && !this.crashed) {
 
+      this.applyForce(this.dna.genes[count]);
       this.vel.add(this.acc);
       this.nextPos.add(this.vel);
 

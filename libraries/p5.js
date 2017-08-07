@@ -821,7 +821,7 @@ Glyph.prototype.drawMetrics = function(ctx, x, y, fontSize) {
     draw.line(ctx, -10000, y + (-yMax * scale), 10000, y + (-yMax * scale));
 
     // Draw the advance width
-    ctx.strokeStyle = 'green';
+    ctx.strokeStyle = 'limegreen';
     draw.line(ctx, x + (advanceWidth * scale), -10000, x + (advanceWidth * scale), 10000);
 };
 

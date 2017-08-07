@@ -8,7 +8,8 @@ function Wall(x, y, w, h)
   	this.draw = function()
   	{
       noStroke();
-	  fill(255);
+	  fill('red');
+	  rectMode(CORNER);
 	  rect(x, y, w, h);
 	}
 
