@@ -1,0 +1,21 @@
+function Wall(x, y, w, h)
+{
+	this.x = x;
+	this.y = y;
+	this.width = w;
+	this.height = h;
+
+  	this.draw = function()
+  	{
+      noStroke();
+	  fill(255);
+	  rect(x, y, w, h);
+	}
+
+	this.isColliding = function(x, y, width, height)
+	{
+		return collideRectRect(
+			this.x,this.y,this.width, this.height,
+			x, y, width, height);
+	}
+}
