@@ -8,6 +8,7 @@ function addTable(){
 			    "<th>Min Fit</th>" +
 			    "<th>Max Fit A* Len</th>" +
 			    "<th>Min Fit A* Len</th>" +
+			    "<th>Avg Fit A* Len</th>" +
 			  "</tr>" +
 			  "</thead>" +
 			  "<tbody>" +
@@ -17,7 +18,7 @@ function addTable(){
 	$("body").append(table);
 }
 
-function addRow(genno, maxfit, minfit, avgfit, maxAS, minAS){
+function addRow(genno, maxfit, minfit, avgfit, maxAS, minAS, avgAS){
 	var data = 
 	"<tr>" + 
 	"<td>" + genno + "</td>" +
@@ -26,6 +27,7 @@ function addRow(genno, maxfit, minfit, avgfit, maxAS, minAS){
 	"<td>" + avgfit + "</td>" + 
 	"<td>" + maxAS + "</td>" +
 	"<td>" + minAS + "</td>" +
+	"<td>" + avgAS + "</td>" +
 	"</tr>";
 
     $("table tbody").append(data);
