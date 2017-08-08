@@ -102,8 +102,6 @@ function Rocket(dna) {
 
         if (isHit)
         {
-          this.dna.genes[count] = p5.Vector.random2D();
-          this.dna.genes[count].setMag(maxforce);
           this.nextPos = this.pos.copy();
           this.vel.limit(0);
         }
