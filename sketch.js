@@ -19,9 +19,6 @@ var canvasHeight = 450;
 var rw = 30;
 var rh = 250;
 
-var rx = 0;
-var ry = 0;
-
 var rx2 = 800 / 1.5;
 var ry2 = 0;
 
@@ -52,17 +49,16 @@ function setup() {
   mutationRateP = createP();
   totalPopulationP = createP();
 
-  target = new Target(createVector(80, 425), 50, 50);
+  target = new Target(createVector(80, 375), 50, 50);
 
-  wall.push(new Wall(rx, ry, rw, rh));
   wall.push(new Wall(rx2, ry2, rw, rh));
   wall.push(new Wall(rx3, ry3, rw, rh));
 
   // Bounds
-  wall.push(new Wall(-rw, 0, rw, canvasHeight));
-  wall.push(new Wall(canvasWidth, 0, rw, canvasHeight));
-  wall.push(new Wall(0, -rw, canvasWidth, rw));
-  wall.push(new Wall(0, canvasHeight, canvasWidth, rw));
+  wall.push(new Wall(0, 0, rw, canvasHeight));
+  wall.push(new Wall(canvasWidth - rw, 0, rw, canvasHeight));
+  wall.push(new Wall(0, 0, canvasWidth, rw));
+  wall.push(new Wall(0, canvasHeight - rw, canvasWidth, rw));
 
   // configure a-star
   var stage = [];
