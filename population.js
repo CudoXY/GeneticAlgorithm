@@ -78,8 +78,6 @@ function Population() {
     for (var i = 0; i < this.popsize; i++) {
       var n = this.rockets[i].fitness * 100;
 
-      if (i == maxIndex)
-        n *= 10;
       for (var j = 0; j < n; j++) {
         this.matingpool.push(this.rockets[i]);
       }

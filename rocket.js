@@ -66,7 +66,7 @@ function Rocket(dna) {
     this.fitness /= this.time;
 
     if (this.completed)
-      this.fitness *= 10;
+      this.fitness *= 100;
 
   }
 
