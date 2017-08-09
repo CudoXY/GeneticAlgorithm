@@ -60,6 +60,19 @@ function Population() {
     console.log(total + " / " + (this.rockets.length));
     this.averageFitness = total / (this.rockets.length);
 
+
+    ////// for debugging
+    var avgAS = 0;
+    var total = 0;
+    for(var i=0; i<this.rockets.length; i++){
+      total += this.rockets[i].resultWithDiagonals.length;
+    }
+    avgAS = total / (this.rockets.length);
+
+
+    addRow(generationCount, maxfit, this.averageFitness, minfit, this.maxFitResult.length, this.minFitResult.length, avgAS);
+    ////// end - for debugging
+
     // generate mating pool
     this.matingpool = [];
     for (var i = 0; i < this.popsize; i++) {

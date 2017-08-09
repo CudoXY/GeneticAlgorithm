@@ -49,7 +49,15 @@ function setup() {
   mutationRateP = createP();
   totalPopulationP = createP();
 
+<<<<<<< HEAD
   target = new Target(createVector(80, 375), 50, 50);
+=======
+  //for debugging
+  addTable();
+  //
+
+  target = new Target(createVector(80, 425), 50, 50);
+>>>>>>> 7f524db2a2fef3bdd0ddd9bc53f658a9fb9b5589
 
   wall.push(new Wall(rx2, ry2, rw, rh));
   wall.push(new Wall(rx3, ry3, rw, rh));
