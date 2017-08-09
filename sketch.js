@@ -53,7 +53,7 @@ function setup() {
   addTable();
   //
 
-  target = new Target(createVector(80, 425), 50, 50);
+  target = new Target(createVector(80, 375), 50, 50);
 
   wall.push(new Wall(rx2, ry2, rw, rh));
   wall.push(new Wall(rx3, ry3, rw, rh));
