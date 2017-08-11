@@ -47,16 +47,17 @@ function Population() {
     this.maxFitResult = this.rockets[maxIndex].resultWithDiagonals;
     console.log('maxfit astar length = ' + this.rockets[maxIndex].resultWithDiagonals.length);
 
-    // normalization of fitnes
-    for (var i = 0; i < this.popsize; i++) {
-      this.rockets[i].fitness /= maxfit;
-    }
-
     // get the average fitness
     var total = 0;
     for (var i = 0; i < this.rockets.length; i++) {
       total += this.rockets[i].fitness;
     }
+    
+    // normalization of fitnes
+    for (var i = 0; i < this.popsize; i++) {
+      this.rockets[i].fitness /= maxfit;
+    }
+
     console.log(total + " / " + (this.rockets.length));
     this.averageFitness = total / (this.rockets.length);
 
