@@ -8,7 +8,7 @@ var lifespan = 600;
 var count = 0;
 var target;
 var maxforce = 0.5;
-var mutationRate = 0.01;
+var mutationRate = 0.001;
 var crossoverRate = 0.6;
 var generationCount = 1;
 var averageFitness = 0;
