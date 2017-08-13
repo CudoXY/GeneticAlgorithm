@@ -4,6 +4,7 @@ function Wall(x, y, w, h)
 	this.y = y;
 	this.width = w;
 	this.height = h;
+	this.margin = 10;
 
   	this.draw = function()
   	{
@@ -17,6 +18,6 @@ function Wall(x, y, w, h)
 	{
 		return collideRectRect(
 			this.x,this.y,this.width, this.height,
-			x, y, width, height);
+			x - this.margin, y - this.margin, width + this.margin * 2, height + this.margin * 2);
 	}
 }
